@@ -1,1 +1,1 @@
-from client import *
+from sumologic.client import *
