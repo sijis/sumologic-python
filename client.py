@@ -24,9 +24,11 @@ class Client(object):
             options = [
                 'auth', 'protocol', 'domain', 'api', 'url', 'debug_mode'
             ]
+            print 'debug ----------------'
             for option in options:
                 print '%s => %s' % (option, getattr(self, option))
             print 'Content: %s ' % content
+            print '----------------------'
 
     def search(self, criteria, **opts):
 
@@ -47,8 +49,6 @@ class Client(object):
         t_options.append('from=%s' % time_from)
         t_options.append('to=%s' % time_to)
         options = '&'.join(t_options)
-
-        self.debug(options)
 
         req = requests.get('%s?%s' % (self.url, options), auth=self.auth)
         data = {}
