@@ -26,7 +26,7 @@ class Collectors(object):
             options = [
                 'auth', 'api', 'url', 'debug_mode'
             ]
-            print 'debug: search --------'
+            print 'debug: collector -----'
             for option in options:
                 print '%s => %s' % (option, getattr(self, option))
             print 'Content: %s ' % content
