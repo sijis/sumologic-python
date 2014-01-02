@@ -1,1 +1,4 @@
 *.pyc
+dist/
+sumologic.egg-info/
+build/
