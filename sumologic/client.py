@@ -1,6 +1,8 @@
 #!/usr/bin/python -tt
 
+
 class Client(object):
+    """ This object autheticates the account to the api """
 
     def __init__(self, auth, **kwargs):
         self.auth = auth
@@ -12,9 +14,15 @@ class Client(object):
         self.debug_mode = kwargs.get('debug', False)
 
     def set_debug(self, debug):
+        """ Enables or disables debug mode
+            :param debug: boolean (True/False)
+        """
         self.debug_mode = debug
 
     def debug(self, content=None):
+        """ Print out the values of class variables
+            :param content: contents to print out
+        """
         if self.debug_mode:
             options = [
                 'auth', 'protocol', 'domain', 'api', 'url', 'debug_mode'
@@ -26,7 +34,9 @@ class Client(object):
             print '----------------------'
 
     def get_url(self):
+        """ Returns full api url """
         return self.url
 
     def get_auth(self):
+        """ Returns api auth details """
         return self.auth

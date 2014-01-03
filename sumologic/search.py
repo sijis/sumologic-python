@@ -5,6 +5,7 @@ import datetime
 
 
 class Search(object):
+    """ This object does the searches against the api """
 
     def __init__(self, auth, api='/logs/search', **kwargs):
         self.api = api
@@ -20,9 +21,15 @@ class Search(object):
             self.auth = auth
 
     def set_debug(self, debug):
+        """ Enables or disables debug mode
+            :param debug: boolean (True/False)
+        """
         self.debug_mode = debug
 
     def debug(self, content=None):
+        """ Print out the values of class variables
+            :param content: contents to print out
+        """
         if self.debug_mode:
             options = [
                 'auth', 'api', 'url', 'debug_mode'
@@ -34,7 +41,14 @@ class Search(object):
             print '----------------------'
 
     def query(self, criteria, **opts):
-
+        """ Returns a dict of the query, including the results
+            :param critera: string of search criteria
+            :param **opts:
+                :formats: json/xml (default: json)
+                :timezone: timezone to use (default: UTC)
+                :time_from: 15m ago from now (datetime)
+                :time_to: right now (datetime)
+        """
         time_now = datetime.datetime.now().replace(second=0, microsecond=0)
         right_now = time_now.isoformat()
         minutes_ago = (time_now - datetime.timedelta(minutes=15)).isoformat()
