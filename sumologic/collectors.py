@@ -36,7 +36,9 @@ class Collectors(object):
             print 'debug: collector -----'
             for option in options:
                 print '%s => %s' % (option, getattr(self, option))
-            print 'Content: %s ' % content
+
+            if content:
+                print 'Content: %s ' % content
             print '----------------------'
 
     def get_collectors(self, limit=1000, offset=0):

@@ -30,7 +30,9 @@ class Client(object):
             print 'debug ----------------'
             for option in options:
                 print '%s => %s' % (option, getattr(self, option))
-            print 'Content: %s ' % content
+
+            if content:
+                print 'Content: %s ' % content
             print '----------------------'
 
     def get_url(self):

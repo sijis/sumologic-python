@@ -37,7 +37,9 @@ class Search(object):
             print 'debug: search --------'
             for option in options:
                 print '%s => %s' % (option, getattr(self, option))
-            print 'Content: %s ' % content
+
+            if content:
+                print 'Content: %s ' % content
             print '----------------------'
 
     def query(self, criteria, **opts):
