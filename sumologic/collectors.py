@@ -56,3 +56,15 @@ class Collectors(object):
             return request.json()['collectors']
         except KeyError:
             return request.json()
+
+    def find(self, name):
+        """ Returns a dict of collector's details if found
+            :param name: name of collector searching for
+        """
+        collectors = self.get_collectors()
+
+        for collector in collectors:
+            if name.lower() == collector['name'].lower():
+                return collector
+
+        return {'status': 'No results found.'}
