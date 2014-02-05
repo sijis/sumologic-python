@@ -50,5 +50,9 @@ class Collectors(object):
         options = {}
         options['limit'] = limit
         options['offset'] = offset
-        request = requests.get('%s?%s' % (self.url, options), auth=self.auth)
-        return request
+        request = requests.get(self.url, params=options, auth=self.auth)
+
+        try:
+            return request.json()['collectors']
+        except KeyError:
+            return request.json()
