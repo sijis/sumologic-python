@@ -1,0 +1,10 @@
+0.1.2
+    - get_collectors() method now returns a dict instead of 
+      a requests object
+    - added a new method find() to collectors
+
+0.1.1
+    - fixed debug output
+
+0.1
+    - initial release
