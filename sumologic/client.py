@@ -1,5 +1,5 @@
-#!/usr/bin/python -tt
-
+import logging
+from .utils import get_logging_level
 
 class Client(object):
     """ This object autheticates the account to the api """
@@ -11,29 +11,12 @@ class Client(object):
         self.api = kwargs.get('api', '/api/v1')
         api_path = '%s' % self.api
         self.url = '%s://%s%s' % (self.protocol, self.domain, api_path)
-        self.debug_mode = kwargs.get('debug', False)
 
-    def set_debug(self, debug):
-        """ Enables or disables debug mode
-            :param debug: boolean (True/False)
-        """
-        self.debug_mode = debug
-
-    def debug(self, content=None):
-        """ Print out the values of class variables
-            :param content: contents to print out
-        """
-        if self.debug_mode:
-            options = [
-                'auth', 'protocol', 'domain', 'api', 'url', 'debug_mode'
-            ]
-            print 'debug ----------------'
-            for option in options:
-                print '%s => %s' % (option, getattr(self, option))
-
-            if content:
-                print 'Content: %s ' % content
-            print '----------------------'
+        # setup debug logging
+        self._debug_mode = kwargs.get('debug', False)
+        self.log = logging.getLogger(__name__)
+        self.log.addHandler(logging.StreamHandler())
+        self.log.setLevel(get_logging_level(self._debug_mode))
 
     def get_url(self):
         """ Returns full api url """

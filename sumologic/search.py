@@ -1,5 +1,3 @@
-#!/usr/bin/python -tt
-
 import requests
 import datetime
 
@@ -9,7 +7,7 @@ class Search(object):
 
     def __init__(self, auth, api='/logs/search', **kwargs):
         self.api = api
-        self.debug_mode = kwargs.get('debug', False)
+        self.log = auth.log
         try:
             self.url = '%s%s' % (auth.get_url(), self.api)
         except AttributeError:
@@ -19,28 +17,6 @@ class Search(object):
             self.auth = auth.get_auth()
         except AttributeError:
             self.auth = auth
-
-    def set_debug(self, debug):
-        """ Enables or disables debug mode
-            :param debug: boolean (True/False)
-        """
-        self.debug_mode = debug
-
-    def debug(self, content=None):
-        """ Print out the values of class variables
-            :param content: contents to print out
-        """
-        if self.debug_mode:
-            options = [
-                'auth', 'api', 'url', 'debug_mode'
-            ]
-            print 'debug: search --------'
-            for option in options:
-                print '%s => %s' % (option, getattr(self, option))
-
-            if content:
-                print 'Content: %s ' % content
-            print '----------------------'
 
     def query(self, criteria, **opts):
         """ Returns a dict of the query, including the results

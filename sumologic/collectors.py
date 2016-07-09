@@ -1,5 +1,3 @@
-#!/usr/bin/python -tt
-
 import requests
 
 
@@ -8,8 +6,8 @@ class Collectors(object):
 
     def __init__(self, auth, api='/collectors', **kwargs):
         self.api = api
-        self.debug_mode = kwargs.get('debug', False)
         self.collector_id = None
+        self.log = auth.log
 
         try:
             self.url = '%s%s' % (auth.get_url(), self.api)
@@ -20,28 +18,6 @@ class Collectors(object):
             self.auth = auth.get_auth()
         except AttributeError:
             self.auth = auth
-
-    def set_debug(self, debug):
-        """ Enables or disables debug mode
-            :param debug: boolean (True/False)
-        """
-        self.debug_mode = debug
-
-    def debug(self, content=None):
-        """ Print out the values of class variables
-            :param content: contents to print out
-        """
-        if self.debug_mode:
-            options = [
-                'auth', 'api', 'url', 'debug_mode'
-            ]
-            print 'debug: collector -----'
-            for option in options:
-                print '%s => %s' % (option, getattr(self, option))
-
-            if content:
-                print 'Content: %s ' % content
-            print '----------------------'
 
     def get_collectors(self, limit=1000, offset=0):
         """ Returns a dict of collectors
@@ -72,7 +48,6 @@ class Collectors(object):
 
         return {'status': 'No results found.'}
 
-
     def delete(self, id=None):
         ''' Delete's a collector from inventory
             Returns ...
@@ -98,7 +73,6 @@ class Collectors(object):
                         u'status': 200,
                     }
         return response
-
 
     def info(self, id):
         ''' Returns a dict of collector
