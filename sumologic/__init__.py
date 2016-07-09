@@ -1,3 +1,3 @@
-from sumologic.client import Client
-from sumologic.search import Search
-from sumologic.collectors import Collectors
+from .client import Client
+from .search import Search
+from .collectors import Collectors
