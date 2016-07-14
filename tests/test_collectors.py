@@ -36,7 +36,21 @@ def test_get_id():
 
 
 @patch('requests.get')
-def test_info_1(requests_get):
+def test_info(requests_get):
     collector = Collectors(CLIENT)
     requests_get.return_value.json.return_value = {}
     assert collector.info(1) == {}
+
+
+@patch('requests.delete')
+def test_delete_collector_ok(requests_delete):
+    collector = Collectors(CLIENT)
+    requests_delete.return_value.json.return_value = {}
+    assert collector.delete(1) == {}
+
+
+@patch('requests.delete')
+def test_delete_collector_notok(requests_delete):
+    collector = Collectors(CLIENT)
+    requests_delete.return_value.json.side_effect = ValueError
+    assert 'message' in collector.delete(1)
