@@ -28,3 +28,15 @@ def test_find_collectors(collectors_mock):
     ]
     find_collector = collector.find('found')
     assert 'id' in find_collector
+
+
+def test_get_id():
+    collector = Collectors(CLIENT)
+    assert collector.get_id() is None
+
+
+@patch('requests.get')
+def test_info_1(requests_get):
+    collector = Collectors(CLIENT)
+    requests_get.return_value.json.return_value = {}
+    assert collector.info(1) == {}
