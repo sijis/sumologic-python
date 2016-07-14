@@ -54,3 +54,11 @@ def test_delete_collector_notok(requests_delete):
     collector = Collectors(CLIENT)
     requests_delete.return_value.json.side_effect = ValueError
     assert 'message' in collector.delete(1)
+
+
+def test_init_auth_and_url_exceptions():
+    auth_mock = MagicMock(auth=('u', 'p'))
+    auth_mock.get_url.side_effect = AttributeError
+    auth_mock.get_auth.side_effect = AttributeError
+    collector = Collectors(auth=auth_mock)
+    assert collector.url.startswith('https://api.sumologic.com/api')
