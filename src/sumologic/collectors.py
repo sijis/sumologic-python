@@ -31,9 +31,11 @@ class Collectors(object):
         request = requests.get(self.url, params=options, auth=self.auth)
 
         try:
-            return request.json()['collectors']
+            results = request.json()['collectors']
         except KeyError:
-            return request.json()
+            results = request.json()
+
+        return results
 
     def find(self, name):
         """ Returns a dict of collector's details if found
