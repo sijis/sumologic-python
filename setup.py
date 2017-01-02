@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sumologic',
-    version = '0.1.3',
+    version = '0.1.4',
     description = 'Python library for working with the Sumo Logic api.',
     long_description = open('README.rst').read(),
     author = 'Sijis Aviles',
@@ -18,7 +18,9 @@ setup(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Operating System :: OS Independent',
     ],
 )
-

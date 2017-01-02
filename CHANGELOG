@@ -1,8 +1,11 @@
+0.1.4
+    - Add python3 support
+
 0.1.3
     - added delete() and info() collector methods
 
 0.1.2
-    - get_collectors() method now returns a dict instead of 
+    - get_collectors() method now returns a dict instead of
       a requests object
     - added a new method find() to collectors
 
