@@ -81,9 +81,9 @@ class Collectors(object):
             # apparently, the request does not return
             # a json response
             response = {
-                        u'message': u'The request completed successfully.',
-                        u'status': 200,
-                    }
+                u'message': u'The request completed successfully.',
+                u'status': 200,
+            }
         return response
 
     def info(self, id):

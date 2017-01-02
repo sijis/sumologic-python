@@ -1,6 +1,7 @@
 import logging
 from .utils import get_logging_level
 
+
 class Client(object):
     """ This object autheticates the account to the api """
 
