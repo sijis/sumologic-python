@@ -5,6 +5,12 @@ class Collectors(object):
     """ This object acts upon the collectors """
 
     def __init__(self, auth, api='/collectors', **kwargs):
+        """Access sumologic Collectors.
+
+        Args:
+            auth (Auth): Authentication object
+            api (str): Api endpath
+        """
         self.api = api
         self.collector_id = None
         self.log = auth.log
@@ -20,10 +26,11 @@ class Collectors(object):
             self.auth = auth
 
     def get_collectors(self, limit=1000, offset=0):
-        """ Returns a dict of collectors
-            :param limit: number of collectors to return
-            :param offset: the offset of where the list of
-                           collectors should begin from
+        """Returns a dict of collectors.
+
+        Args:
+            limit (int): number of collectors to return
+            offset (int): the offset of where the list of collectors should begin from
         """
         options = {}
         options['limit'] = limit
@@ -38,8 +45,10 @@ class Collectors(object):
         return results
 
     def find(self, name):
-        """ Returns a dict of collector's details if found
-            :param name: name of collector searching for
+        """Returns a dict of collector's details if found.
+
+        Args:
+            name (str): name of collector searching for
         """
         collectors = self.get_collectors()
 
@@ -51,10 +60,11 @@ class Collectors(object):
         return {'status': 'No results found.'}
 
     def delete(self, id=None):
-        ''' Delete's a collector from inventory
-            Returns ...
-            :param id: id of collector (optional)
-        '''
+        """Delete a collector from inventory.
+
+        Args:
+            id (int): id of collector (optional)
+        """
         cid = self.collector_id
 
         if id:
@@ -77,9 +87,11 @@ class Collectors(object):
         return response
 
     def info(self, id):
-        ''' Returns a dict of collector
-            :param id: id of collector (optional)
-        '''
+        """Return a dict of collector.
+
+        Args:
+            id (int): id of collector (optional)
+        """
         cid = self.collector_id
         if id:
             cid = id
@@ -89,4 +101,5 @@ class Collectors(object):
         return request.json()
 
     def get_id(self):
+        """Return the collector's id"""
         return self.collector_id

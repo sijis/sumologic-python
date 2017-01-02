@@ -5,6 +5,13 @@ class Client(object):
     """ This object autheticates the account to the api """
 
     def __init__(self, auth, **kwargs):
+        """
+        Initializes Client object.
+
+        Args:
+            auth (Auth): Authentication object
+            api (str): Api endpath
+        """
         self.auth = auth
         self.protocol = kwargs.get('protocol', 'https')
         self.domain = kwargs.get('domain', 'api.sumologic.com')
