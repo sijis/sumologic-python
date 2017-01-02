@@ -59,16 +59,16 @@ class Collectors(object):
 
         return {'status': 'No results found.'}
 
-    def delete(self, id=None):
+    def delete(self, collector_id=None):
         """Delete a collector from inventory.
 
         Args:
-            id (int): id of collector (optional)
+            collector_id (int): id of collector (optional)
         """
         cid = self.collector_id
 
-        if id:
-            cid = id
+        if collector_id:
+            cid = collector_id
 
         # param to delete id
         url = '{0}/{1}'.format(self.url, cid)
@@ -86,15 +86,15 @@ class Collectors(object):
             }
         return response
 
-    def info(self, id):
+    def info(self, collector_id):
         """Return a dict of collector.
 
         Args:
-            id (int): id of collector (optional)
+            collector_id (int): id of collector (optional)
         """
         cid = self.collector_id
-        if id:
-            cid = id
+        if collector_id:
+            cid = collector_id
 
         url = '{0}/{1}'.format(self.url, cid)
         request = requests.get(url, auth=self.auth)
