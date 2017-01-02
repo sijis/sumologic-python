@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/sijis/sumologic-python.svg?branch=master
+    :target: https://travis-ci.org/sijis/sumologic-python
+
 sumologic-python
 ================
 
