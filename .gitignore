@@ -2,3 +2,7 @@
 dist/
 sumologic.egg-info/
 build/
+.tox/
+.coverage
+.cache/
+htmlcov/
