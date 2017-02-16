@@ -43,17 +43,19 @@ class Search(object):
         time_to = opts.get('time_to', right_now)
 
         # setting up options
-        t_options = []
-        t_options.append('q=%s' % criteria)
-        t_options.append('format=%s' % formats)
-        t_options.append('tz=%s' % timezone)
-        t_options.append('from=%s' % time_from)
-        t_options.append('to=%s' % time_to)
-        options = '&'.join(t_options)
+        t_options = {
+            'q': criteria,
+            'format': formats,
+            'tz': timezone,
+            'from': time_from,
+            'to': time_to,
+        }
+        options = '&'.join(['{}={}'.format(k, v) for k, v in t_options.items()])
 
         req = requests.get('%s?%s' % (self.url, options), auth=self.auth)
-        data = {}
-        data['data'] = req.json()
-        data['response'] = req.status_code
-        data['reason'] = req.reason
+        data = {
+            'data': req.json(),
+            'response': req.status_code,
+            'reason': req.reason,
+        }
         return data

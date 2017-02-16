@@ -32,9 +32,10 @@ class Collectors(object):
             limit (int): number of collectors to return
             offset (int): the offset of where the list of collectors should begin from
         """
-        options = {}
-        options['limit'] = limit
-        options['offset'] = offset
+        options = {
+            'limit': limit,
+            'offset': offset,
+        }
         request = requests.get(self.url, params=options, auth=self.auth)
 
         try:
