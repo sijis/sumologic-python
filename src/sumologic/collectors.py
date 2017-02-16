@@ -8,7 +8,7 @@ class Collectors(object):
         """Access sumologic Collectors.
 
         Args:
-            auth (Auth): Authentication object
+            auth (Client): Authentication object
             api (str): Api endpath
         """
         self.api = api

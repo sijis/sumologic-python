@@ -10,7 +10,7 @@ class Client(object):
         Initializes Client object.
 
         Args:
-            auth (Auth): Authentication object
+            auth (tuple): Authentication object
             api (str): Api endpath
         """
         self.auth = auth

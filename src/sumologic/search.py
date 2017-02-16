@@ -6,6 +6,12 @@ class Search(object):
     """ This object does the searches against the api """
 
     def __init__(self, auth, api='/logs/search', **kwargs):
+        """Search the logs.
+
+        Args:
+            auth (Client): Authentication object
+            api (str): Api endpath
+        """
         self.api = api
         self.log = auth.log
         try:
