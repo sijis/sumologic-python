@@ -1,3 +1,4 @@
+import json
 import requests
 
 
@@ -42,6 +43,8 @@ class Collectors(object):
             results = request.json()['collectors']
         except KeyError:
             results = request.json()
+        except json.decoder.JSONDecodeError:
+            results = []
 
         return results
 

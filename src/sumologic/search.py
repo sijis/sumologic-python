@@ -1,3 +1,4 @@
+import json
 import requests
 import datetime
 
@@ -50,12 +51,19 @@ class Search(object):
             'from': time_from,
             'to': time_to,
         }
-        options = '&'.join(['{}={}'.format(k, v) for k, v in t_options.items()])
+        options = '&'.join(['{}={}'.format(k, v)
+                            for k, v in t_options.items()])
 
-        req = requests.get('%s?%s' % (self.url, options), auth=self.auth)
-        data = {
-            'data': req.json(),
+        req = requests.get('%s?%s' %
+                           (self.url, options), auth=self.auth)
+
+        try:
+            data = req.json()
+        except json.decoder.JSONDecodeError:
+            data = []
+
+        return {
+            'data': data,
             'response': req.status_code,
             'reason': req.reason,
         }
-        return data
